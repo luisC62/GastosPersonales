@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Control de gastos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1 class="titulo"><span class="marca" aria-hidden="true">€</span> Control de gastos</h1>
+    <p class="subtitulo">Apunta tus gastos del día a día, en euros.</p>
+  </header>
+
+  <main class="contenido">
+    <!-- Mensaje de error (por ejemplo, si el servidor no está arrancado) -->
+    <p id="aviso" class="aviso oculto" role="alert"></p>
+
+    <!-- Total gastado en la semana y en el mes en curso -->
+    <section class="resumen" aria-label="Totales de la semana y del mes">
+      <div class="resumen-tarjeta">
+        <span class="resumen-titulo">Esta semana</span>
+        <span class="resumen-cantidad" id="total-semanal">—</span>
+        <span class="resumen-rango" id="rango-semanal"></span>
+      </div>
+      <div class="resumen-tarjeta">
+        <span class="resumen-titulo">Este mes</span>
+        <span class="resumen-cantidad" id="total-mensual">—</span>
+        <span class="resumen-rango" id="rango-mensual"></span>
+      </div>
+    </section>
+
+    <!-- Formulario para registrar un gasto nuevo -->
+    <section class="tarjeta" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Nuevo gasto</h2>
+      <form id="formulario">
+        <div class="fila">
+          <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+          <div class="campo">
+            <label for="cantidad">Cantidad (€)</label>
+            <input type="number" id="cantidad" name="cantidad" min="0.01" step="0.01" inputmode="decimal" required>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="tipo">Tipo</label>
+          <input type="text" id="tipo" name="tipo" maxlength="50" placeholder="comida, transporte, ocio…" required>
+        </div>
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <input type="text" id="descripcion" name="descripcion" maxlength="200" placeholder="menú del día" required>
+        </div>
+        <button type="submit" class="boton-principal">Añadir gasto</button>
+      </form>
+    </section>
+
+    <!-- Lista de gastos, del más reciente al más antiguo -->
+    <section aria-labelledby="titulo-listado">
+      <div class="listado-cabecera">
+        <h2 id="titulo-listado">Gastos</h2>
+        <button type="button" id="boton-borrar" class="boton-borrar" disabled>Eliminar seleccionado</button>
+      </div>
+      <ul id="lista-gastos" class="lista-gastos"></ul>
+      <p id="sin-gastos" class="sin-gastos oculto">
+        Todavía no hay ningún gasto. Añade el primero desde el formulario.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

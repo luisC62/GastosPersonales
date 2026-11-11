@@ -1,0 +1,361 @@
+/* ============================================================
+   Control de gastos — hoja de estilos
+   Colores y medidas principales en variables CSS para reutilizarlos.
+   ============================================================ */
+
+:root {
+  --papel: #faf9f6;        /* fondo general de la página */
+  --blanco: #ffffff;       /* tarjetas, campos y filas */
+  --tinta: #22302a;        /* texto principal */
+  --tinta-suave: #5f6d66;  /* texto secundario */
+  --verde: #1f6b4c;        /* color principal (dinero) */
+  --verde-oscuro: #17563d; /* variante oscura del principal */
+  --verde-suave: #e7f0ea;  /* fondos y bordes tenues */
+  --rojo: #b3362b;         /* borrar y errores */
+  --rojo-suave: #fdecea;   /* fondo del aviso de error */
+  --borde: #e3e0d7;        /* líneas finas */
+  --radio: 14px;           /* esquinas redondeadas */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--papel);
+  color: var(--tinta);
+  line-height: 1.5;
+}
+
+/* ---------- Cabecera ---------- */
+
+.cabecera {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 8px;
+}
+
+.titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Cuadrado verde con el símbolo del euro, junto al título. */
+.marca {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--verde);
+  color: var(--blanco);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.subtitulo {
+  margin: 6px 0 0;
+  color: var(--tinta-suave);
+}
+
+/* ---------- Aviso de error ---------- */
+
+.aviso {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 12px 16px;
+  background: var(--rojo-suave);
+  border: 1px solid #eeb9b3;
+  border-radius: var(--radio);
+  color: #8a2c22;
+}
+
+/* ---------- Resumen: totales de la semana y del mes ---------- */
+
+.resumen {
+  grid-column: 1 / -1; /* ocupa todo el ancho, también en dos columnas */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.resumen-tarjeta {
+  display: grid;
+  gap: 2px;
+  padding: 14px 16px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.resumen-titulo {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--tinta-suave);
+}
+
+.resumen-cantidad {
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--verde-oscuro);
+}
+
+.resumen-rango {
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+}
+
+/* ---------- Distribución general ---------- */
+
+.contenido {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 12px 20px 48px;
+  display: grid;
+  gap: 20px;
+}
+
+.tarjeta h2,
+.listado-cabecera h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.tarjeta h2 {
+  margin-bottom: 16px;
+}
+
+/* ---------- Formulario ---------- */
+
+.tarjeta {
+  padding: 20px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+  min-width: 0;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+input:focus {
+  border-color: var(--verde);
+  outline: 3px solid var(--verde-suave);
+}
+
+.boton-principal {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--blanco);
+  background: var(--verde);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.boton-principal:hover {
+  background: var(--verde-oscuro);
+}
+
+.boton-principal:active {
+  transform: translateY(1px);
+}
+
+/* ---------- Lista de gastos ---------- */
+
+.listado-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.boton-borrar {
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--rojo);
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.boton-borrar:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.boton-borrar:not(:disabled):hover {
+  background: var(--rojo-suave);
+  border-color: #eeb9b3;
+}
+
+.lista-gastos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+/* Cada gasto es un botón: se pulsa para marcarlo y poder borrarlo. */
+.gasto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.gasto:hover {
+  border-color: #c9c4b8;
+}
+
+.gasto.seleccionado {
+  border-color: var(--verde);
+  background: var(--verde-suave);
+}
+
+.gasto-texto {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.gasto-descripcion {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.gasto-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+/* El tipo de gasto se muestra como una etiqueta pequeña. */
+.gasto-tipo {
+  padding: 1px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--verde-oscuro);
+  background: var(--verde-suave);
+  border-radius: 999px;
+}
+
+.gasto.seleccionado .gasto-tipo {
+  background: var(--blanco);
+}
+
+.gasto-cantidad {
+  flex: none;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--verde-oscuro);
+  white-space: nowrap;
+}
+
+.sin-gastos {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--tinta-suave);
+  border: 1px dashed var(--borde);
+  border-radius: 12px;
+}
+
+/* El foco con teclado se ve siempre en botones y campos. */
+button:focus-visible,
+input:focus {
+  outline: 3px solid var(--verde-suave);
+}
+
+.oculto {
+  display: none;
+}
+
+/* ---------- Animación del gasto recién añadido ---------- */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.gasto.nuevo {
+  animation: aparecer 0.35s ease-out;
+}
+
+/* ---------- Pantallas anchas: formulario a la izquierda ---------- */
+
+@media (min-width: 760px) {
+  .contenido {
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .tarjeta {
+    position: sticky;
+    top: 24px;
+  }
+}
+
+/* Si el usuario prefiere menos movimiento, se desactiva la animación. */
+@media (prefers-reduced-motion: reduce) {
+  .gasto.nuevo {
+    animation: none;
+  }
+
+  .boton-principal:active {
+    transform: none;
+  }
+}
